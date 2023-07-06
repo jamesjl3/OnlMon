@@ -5,11 +5,13 @@
 
 To build it, create a build area and run
 
-\<srcdir\>/autogen.sh --prefix=\<installdir\>
+\<srcdir\>/autogen.sh --prefix=\<installdir\>  --> ./autogen.sh --prefix=$MYINSTALL
 
 make install
 
-then set ONLMON_MAIN to installdir, cd to \<srcdir\>/macros where the macros and scripts are located
+then set ONLMON_MAIN to installdir --> emacs ~/.bashrc --> export ONLMON_MAIN=$MYINSTALL
+
+cd to \<srcdir\>/macros where the macros and scripts are located
 
 source setup_onlmon.sh
 

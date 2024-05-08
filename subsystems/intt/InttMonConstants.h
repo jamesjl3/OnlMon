@@ -2,67 +2,83 @@
 #define INTT_MON_CONSTANTS_H
 
 #include <iostream>
+#include <TROOT.h>
 
 namespace INTT
 {
-	constexpr int LAYER_OFFSET = 0;
-	constexpr int CHIP_OFFSET = 1;
+  constexpr int LAYER_OFFSET = 0;
+  constexpr int CHIP_OFFSET = 1;
 
-	const int FELIX = 8;
-	const int FELIX_CHANNEL = 14;
+  const int FELIX = 8;
+  const int FELIX_CHANNEL = 14;
 
-	constexpr int LAYER = 4;
-	constexpr int LADDER[LAYER] = {12, 12, 16, 16};
-	constexpr int ARM = 2;
+  constexpr int LAYER = 4;
+  constexpr int LADDER[LAYER] = {12, 12, 16, 16};
+  constexpr int ARM = 2;
 
-	constexpr int CHIP = 26;
-	constexpr int CHANNEL = 128;
-	constexpr int ADC = 8;
+  constexpr int CHIP = 26;
+  constexpr int CHANNEL = 128;
+  constexpr int ADC = 8;
 
-	constexpr int LADDERS_()
-	{
-		int L = 0;
-	
-		for(int layer = 0; layer < LAYER; layer++)
-		{
-			L += LADDER[layer];
-		}
-	
-		return L;
-	}
-	
-	constexpr int LADDERS = LADDERS_();
+  constexpr int BCO = 128;
 
-	constexpr int FELIX_CHANNELS = FELIX * FELIX_CHANNEL;
-	constexpr int CHIPS =  CHIP * FELIX_CHANNELS;
-	constexpr int CHANNELS = CHANNEL * CHIPS;
-	constexpr int ADCS = CHANNELS * ADC;
+  constexpr int LADDERS_()
+  {
+    int L = 0;
 
-	struct Indexes_s
-	{
-		int lyr = 0;
-		int ldr = 0;
-		int arm = 0;
-		int chp = 0;
-		int chn = 0;
-		int adc = 0;
-	};
+    for (int layer = 0; layer < LAYER; layer++)
+    {
+      L += LADDER[layer];
+    }
 
-	void GetFelixBinFromIndexes(int&, int, struct Indexes_s const&);
-	void GetFelixIndexesFromBin(int, int&, struct Indexes_s&);
+    return L;
+  }
 
-	void GetGlobalChipBinXYFromIndexes(int&, int&, struct Indexes_s const&);
-	void GetIndexesFromGlobalChipBinXY(int const&, int const&, struct Indexes_s&);
+  constexpr int LADDERS = LADDERS_();
 
-	void GetLocalChannelBinXYFromIndexes(int&, int&, struct Indexes_s const&);
-	void GetIndexesFromLocalChannelBinXY(int const&, int const&, struct Indexes_s&);
+  constexpr int FELIX_CHANNELS = FELIX * FELIX_CHANNEL;
+  constexpr int CHIPS = CHIP * FELIX_CHANNELS;
+  constexpr int CHANNELS = CHANNEL * CHIPS;
+  constexpr int ADCS = CHANNELS * ADC;
+  constexpr int BCOS = FELIX * FELIX_CHANNEL * BCO;
 
-	void GetGlobalLadderBinXYFromIndexes(int&, int&, struct Indexes_s const&);
-	void GetIndexesFromGlobalLadderBinXY(int const&, int const&, struct Indexes_s&);
+  struct Indexes_s
+  {
+    int lyr = 0;
+    int ldr = 0;
+    int arm = 0;
+    int chp = 0;
+    int chn = 0;
+    int adc = 0;
+  };
 
-	void GetLocalChipBinXYFromIndexes(int&, int&, struct Indexes_s const&);
-	void GetIndexesFromLocalChipBinXY(int const&, int const&, struct Indexes_s&);
-}
+  struct BcoData_s
+  {
+    int pid = 0;
+	int fee = 0;
+	int bco = 0; // bco difference
+  };
+
+  void GetBcoBin(int&, struct BcoData_s const&);
+  void GetBcoIndexes(int, struct BcoData_s&);
+  Color_t GetFeeColor(int);
+
+  void GetFelixBinFromIndexes(int&, int, struct Indexes_s const&);
+  void GetFelixIndexesFromBin(int, int&, struct Indexes_s&);
+
+  void GetGlobalChipBinXYFromIndexes(int&, int&, struct Indexes_s const&);
+  void GetIndexesFromGlobalChipBinXY(int const&, int const&, struct Indexes_s&);
+
+  void GetLocalChannelBinXYFromIndexes(int&, int&, struct Indexes_s const&);
+  void GetIndexesFromLocalChannelBinXY(int const&, int const&, struct Indexes_s&);
+
+  void GetGlobalLadderBinXYFromIndexes(int&, int&, struct Indexes_s const&);
+  void GetIndexesFromGlobalLadderBinXY(int const&, int const&, struct Indexes_s&);
+
+  void GetLocalChipBinXYFromIndexes(int&, int&, struct Indexes_s const&);
+  void GetIndexesFromLocalChipBinXY(int const&, int const&, struct Indexes_s&);
+
+}  // namespace INTT
 
 //      Ladder Structure                //
 //======================================//

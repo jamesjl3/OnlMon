@@ -7,7 +7,7 @@ SUBDIRS = calib
 
 AM_CPPFLAGS = \
   -I$(includedir) \
-  -I$(ONLINE_MAIN)/include \
+  -isystem$(ONLINE_MAIN)/include \
   -isystem$(ROOTSYS)/include
 
 lib_LTLIBRARIES = \
@@ -19,6 +19,7 @@ libonlsepdmon_server_la_LIBADD = \
   -L$(ONLINE_MAIN)/lib \
   -lonlmonserver \
   -lonlmondb \
+  -lonlmonutils \
   -lcalo_io \
   -lcalo_reco
 

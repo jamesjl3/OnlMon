@@ -30,6 +30,7 @@ class CemcMonDraw : public OnlMonDraw
   int DrawSecond(const std::string &what = "ALL");
   int DrawThird(const std::string &what = "ALL");
   int DrawFourth(const std::string &what = "ALL");
+  int DrawFifth(const std::string &what = "ALL");
   int DrawHistory(const std::string &what = "ALL");
   int FindHotTower(TPad *warn,TH2* );
   time_t getTime();
@@ -38,6 +39,7 @@ class CemcMonDraw : public OnlMonDraw
 
   const int nTowersEta = 96;
   const int nTowersPhi = 256;
+  const int templateDepth=10000;
   int save = 0;
   TCanvas *TC[9] = {nullptr};
   TPad *transparent[9] = {nullptr};
@@ -45,7 +47,7 @@ class CemcMonDraw : public OnlMonDraw
   TPad *warning[18] = {nullptr};
   TGraphErrors *gr[2] = {nullptr};
   TStyle* cemcStyle = nullptr;
-  const int nSEBs = 8;
+  const int nSEBs = 16;
 };
 
 #endif /* CEMC_CEMCMONDRAW_H */

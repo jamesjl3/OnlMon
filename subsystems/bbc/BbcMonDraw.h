@@ -69,6 +69,8 @@ class BbcMonDraw : public OnlMonDraw
   int nPadWarning[MAX_WARNING] = {};
   int nWarning = 0;
 
+  TH1 *Trigs{nullptr};
+
   // for the 1st Page
   TGraphErrors *TdcOver[nSIDE] = {};
   TPad *PadTdcOver[nSIDE] = {};
@@ -125,6 +127,12 @@ class BbcMonDraw : public OnlMonDraw
   TH2 *ChargeWave = nullptr;
   TPad *PadChargeWave = nullptr;
 
+  TH2 *SouthHitMap = nullptr;
+  TPad *PadSouthHitMap = nullptr;
+
+  TH2 *NorthHitMap = nullptr;
+  TPad *PadNorthHitMap = nullptr;
+
   TLine *LineTzeroZvtx[4] = {};
   TText *TextTzeroZvtx = nullptr;
 
@@ -137,12 +145,11 @@ class BbcMonDraw : public OnlMonDraw
   TLatex *TextBbcSummaryTrigRate = nullptr;
 
   TH1 *Zvtx = nullptr;
-  TH1 *Zvtx_bbll1 = nullptr;
-  //  TH1 * Zvtx_zdc = nullptr;
-  //  TH1 * Zvtx_zdc_scale3 = nullptr;
-  TH1 *Zvtx_bbll1_novtx = nullptr;
-  TH1 *Zvtx_bbll1_narrowvtx = nullptr;
-  //  TH1 * Zvtx_bbll1_zdc = nullptr;
+  TH1 *Zvtx_ns{nullptr};
+  TH1 *Zvtx_10{nullptr};
+  TH1 *Zvtx_30{nullptr};
+  TH1 *Zvtx_60{nullptr};
+  TH1 *Zvtx_zdcns{nullptr};
   TPad *PadZvtx = nullptr;
   TF1 *FitZvtx = nullptr;
   TLine *LineZvtx[2] = {};
@@ -185,7 +192,7 @@ class BbcMonDraw : public OnlMonDraw
   TText *TextZVertex_scale[5] = {};  // RUN11 pp
   TText *TextZVertex_mean[5] = {};   // RUN11 pp
 
-  TLatex *TextZVtxStatus[2] = {};
+  TLatex *TextZvtxStatus[2] = {};
 
   TH2 *TzeroZvtx = nullptr;
 
@@ -193,9 +200,8 @@ class BbcMonDraw : public OnlMonDraw
   TH1 *Prescale_hist = nullptr;
   TSpectrum *tspec = nullptr;
 
-private:
+ private:
   int DrawDeadServer(TPad *transparent_pad) override;
-
 };
 
 #endif /* BBC_BBCMONDRAW_H */
